@@ -5,6 +5,8 @@ const morgan = require("morgan");
 const dotenv = require("dotenv");
 const colors = require("colors");
 const connectDB = require("./config/db");
+//routes Path
+const authRoutes = require("./routes/authRoute");
 
 //dotenv
 dotenv.config();
@@ -22,6 +24,9 @@ app.use(express.json());
 app.use(morgan("dev"));
 
 const PORT = process.env.PORT || 8080;
+
+//API Routes
+app.use("/api/v1/auth", authRoutes);
 
 //listen server
 app.listen(PORT, () => {
