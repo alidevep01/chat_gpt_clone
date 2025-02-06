@@ -5,6 +5,8 @@ const morgan = require("morgan");
 const dotenv = require("dotenv");
 const colors = require("colors");
 const connectDB = require("./config/db");
+//MiddleWare
+const errorHandler = require("./middelwares/errorMiddleware");
 //routes Path
 const authRoutes = require("./routes/authRoute");
 
@@ -22,6 +24,7 @@ app.use(cors());
 app.use(bodyParser.urlencoded("extended:false"));
 app.use(express.json());
 app.use(morgan("dev"));
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 8080;
 
